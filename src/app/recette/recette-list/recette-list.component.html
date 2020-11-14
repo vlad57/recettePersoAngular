@@ -1,0 +1,17 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container centeringElements">
+  <ul class="meal-list">
+    <li *ngFor="let recette of listRecettes | async | paginate: { id: 'server', itemsPerPage: perPage, currentPage: p, totalItems: total }">
+      <a routerLink="/recette/detail/{{recette.id}}">{{recette.name}}</a>
+    </li>
+  </ul>
+
+  <a routerLink="/recette/new/">Ajouter</a>
+
+  <div class="has-text-centered">
+    <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+    <pagination-controls (pageChange)="getPage($event, perPage)" id="server"></pagination-controls>
+  </div>
+</div>
+

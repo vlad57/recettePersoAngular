@@ -1,0 +1,31 @@
+
+<div class="container registerForm">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" style="width: 25%;">
+
+    <div class="form-group">
+      <label for="emailRegisterForm">Adresse email</label>
+      <input type="email" id="emailRegisterForm" class="form-control"  placeholder="Entrer email" formControlName="email">
+    </div>
+
+    <div class="form-group">
+      <label for="usernameRegisterForm">Username</label>
+      <input type="text" id="usernameRegisterForm" class="form-control"  placeholder="Username" formControlName="username">
+    </div>
+
+    <div class="form-group">
+      <label for="passwordRegisterForm">Mot de passe</label>
+      <input type="password" id="passwordRegisterForm" class="form-control"  placeholder="Mot de passe" formControlName="password">
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPasswordRegisterForm">Confirmer mot de passe</label>
+      <input type="password" id="confirmPasswordRegisterForm" class="form-control"  placeholder="Confirmer mot de passe" formControlName="confirmPassword">
+    </div>
+
+    <div style="text-align: center;">
+      <button type="submit" class="btn btn-primary">Créer un compte</button>
+    </div>
+
+  </form>
+</div>
+

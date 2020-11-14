@@ -1,0 +1,24 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container">
+  <button (click)="addIngredient()">Add </button>
+
+
+  <form [formGroup]="recette">
+    <input formControlName="recetteName"/>
+    <input formControlName="recetteDescription">
+
+    <ng-container formArrayName="ingredient">
+      <div *ngFor="let _ of ingredients.controls; index as i">
+        <ng-container [formGroupName]="i">
+          <input formControlName="name" />
+          <input formControlName="quantite" />
+          <input formControlName="unite"><a class="btn btn-dark" (click)="deleteIngredient(i)">Delete</a>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <button type="submit" (click)="onSubmit()">Valider</button>
+  </form>
+</div>
+
