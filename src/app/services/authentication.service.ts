@@ -32,8 +32,8 @@ export class AuthenticationService {
       });
   }
 
-  async amIAuth(token): Promise<boolean> {
-    return await this.retAmIAuth(token).then(data => {
+  amIAuth(token): Promise<boolean> {
+    return this.retAmIAuth(token).then(data => {
       let returnedData: any = data;
 
       if (returnedData.isAuth) {

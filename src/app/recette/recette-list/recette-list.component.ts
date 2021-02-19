@@ -3,6 +3,7 @@ import {HttpCallService} from "../../services/http-call.service";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {map, tap} from "rxjs/operators";
+import {RecetteService} from "../../services/recette.service";
 
 @Component({
   selector: 'app-recette-list',
@@ -19,7 +20,7 @@ export class RecetteListComponent implements OnInit {
   loading: boolean;
   perPage: number = 10;
 
-  constructor(public _httpCallService: HttpCallService, private httpClient: HttpClient ) {
+  constructor(public _httpCallService: HttpCallService, private httpClient: HttpClient, public recetteService: RecetteService ) {
     this.httpCallService = _httpCallService;
   }
 
@@ -57,6 +58,29 @@ export class RecetteListComponent implements OnInit {
 
         console.log(anyData);
       });*/
+  }
+
+  deleteRecette(idRecette, page, perPage) {
+
+    page = this.p;
+    perPage = this.perPage;
+
+    this.recetteService.deleteRecette(idRecette).subscribe(data => {
+      let dataReturned: any = data;
+
+      if (dataReturned.success) {
+        this.listRecettes.subscribe(dataRecette => {
+          this.listRecettes = this.getRecetteList(page, perPage).pipe(tap(res => {
+
+              this.total = res.totalRecette;
+              this.p = page;
+              this.loading = false;
+            }), map(res => res.resultRecettes)
+          );
+        });
+      }
+    });
+
   }
 
 }

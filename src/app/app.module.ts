@@ -13,6 +13,7 @@ import { RecetteListComponent } from './recette/recette-list/recette-list.compon
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NavBarComponent } from './composant/nav-bar/nav-bar.component';
 import { LogoutComponent } from './logout/logout.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LogoutComponent } from './logout/logout.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

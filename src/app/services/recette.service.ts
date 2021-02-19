@@ -47,4 +47,20 @@ export class RecetteService {
       headers: this.httpCallServices.getHeader(localStorage.getItem('tokenAuth'), 'application/json'),
     });
   }
+
+  deleteRecette(idRecette) {
+
+    let headers = {
+      headers: this.httpCallServices.getHeader(localStorage.getItem('tokenAuth'), 'application/json'),
+      body: {
+        'recetteId': idRecette
+      }
+    };
+
+    console.log(headers)
+
+    return this.httpClient.delete('http://localhost:8081/api/recette/delete/', headers);
+
+
+  }
 }

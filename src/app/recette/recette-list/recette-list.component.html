@@ -1,17 +1,38 @@
 <app-nav-bar></app-nav-bar>
 
-<div class="container centeringElements">
-  <ul class="meal-list">
-    <li *ngFor="let recette of listRecettes | async | paginate: { id: 'server', itemsPerPage: perPage, currentPage: p, totalItems: total }">
-      <a routerLink="/recette/detail/{{recette.id}}">{{recette.name}}</a>
-    </li>
-  </ul>
+<div class="container ">
 
-  <a routerLink="/recette/new/">Ajouter</a>
+  <a routerLink="/recette/new/" class="btn btn-primary" style="margin-top: 20px; margin-bottom: 20px; float: right;">Ajouter + </a>
 
-  <div class="has-text-centered">
-    <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
-    <pagination-controls (pageChange)="getPage($event, perPage)" id="server"></pagination-controls>
+  <table class="table table-dark">
+    <thead>
+    <tr>
+      <th style="width: 20%" scope="col">#</th>
+      <th style="width: 25%" scope="col">Nom</th>
+      <th style="width: 40%" scope="col">Description</th>
+      <th style="width: 15%" scope="col"> </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let recette of listRecettes | async | paginate: { id: 'server', itemsPerPage: perPage, currentPage: p, totalItems: total }">
+      <td>{{recette.id}}</td>
+      <td>{{recette.name}}</td>
+      <td>{{recette.description}}</td>
+      <td>
+        <a routerLink="/recette/detail/{{recette.id}}" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+        <button class="btn btn-danger" (click)="deleteRecette(recette.id, $event, perPage)" style="margin-left: 10px;"><i class="fas fa-trash"></i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div style="text-align: center;">
+    <div class="has-text-centered" *ngIf="listRecettes | async">
+      <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+      <pagination-controls (pageChange)="getPage($event, perPage)" id="server"></pagination-controls>
+    </div>
   </div>
+
 </div>
 
